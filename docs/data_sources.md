@@ -6,162 +6,69 @@
 
 
 
-This project studies a multi-step relationship: 
+This project studies the relationship between air pollution, meteorological conditions, and estimated health risk.
 
 
 
-Traffic intensity → Air pollution → Estimated health risk 
+The final design uses two independent data sources:
 
 
 
-The goal is not to prove direct causality, but to estimate a plausible statistical pathway linking urban traffic to health outcomes through air pollution.
+Measured air pollution data → Health risk interpretation
 
 
 
-Source 1: Traffic, Weather, and Air Pollution Dataset
-
-Description
+Source 1: UCI Air Quality Dataset
 
 
 
-This dataset integrates approximately 10 years of daily observations from Norway’s six largest cities.
+Official source: https://archive.ics.uci.edu/dataset/360/air+quality
 
 
 
-It includes:
+This dataset contains hourly air quality measurements from an urban monitoring station in Italy.
 
 
 
-* traffic intensity
-* PM2.5
-* PM10
+Main variables include:
+
+
+
+* CO
+* NOx
 * NO₂
+* benzene
 * temperature
-* humidity
-* wind-related variables
-* Official publication
+* relative humidity
+* absolute humidity
 
 
 
-Scientific Data article: https://www.nature.com/articles/s41597-024-03583-8?utm\_source=chatgpt.com
+Role in project: Pollution and meteorological measurements
 
 
 
-Main role in the project
+Source 2: World Bank Air Pollution Mortality Dataset
 
 
 
-Used to model: Traffic -> Pollution
+Official source: https://data.worldbank.org/indicator/SH.STA.AIRP.P5
 
 
 
-Advantages
+Indicator: Mortality rate attributed to household and ambient air pollution, age-standardized, per 100,000 population
 
-* long time horizon
-* multiple cities
-* integrated environmental variables
-* peer-reviewed publication
 
 
+Role in project: Health outcome indicator related to air pollution
 
 
 
-Limitations
+Methodological Reference
 
 
 
-* limited geographic scope
-* no direct medical observations
-
-
-
-
-
-Source 2: European Environment Agency (EEA) Health Risk Data
-
-Description
-
-
-
-The European Environment Agency provides air pollution health-risk assessment datasets for pollutants such as:
-
-
-
-* PM2.5
-* PM10
-* NO₂
-* O₃
-
-
-
-The dataset includes health-risk calculations at country, city, and regional levels.
-
-
-
-Official source
-
-
-
-https://www.eea.europa.eu/data-and-maps/data/air-quality-health-risk-assessments
-
-
-
-Main role in the project
-
-
-
-Used to model: Pollution → Estimated Health Risk
-
-
-
-Advantages
-
-* official EU-level source
-* epidemiologically validated
-* widely used in environmental policy
-
-
-
-
-
-Limitations
-
-
-
-* not directly synchronized with traffic dataset
-* used mainly for health-risk estimation methodology
-
-
-
-Source 3: WHO AirQ+ Methodology
-
-Description
-
-
-
-The World Health Organization (WHO) AirQ+ methodology is used to estimate health burden from air pollution exposure.
-
-
-
-It provides:
-
-
-
-* exposure-response relationships
-* relative risk estimation
-* attributable fraction formulas
-
-
-
-Official documentation
-
-
-
-https://iris.who.int/bitstream/handle/10665/337683/WHO-EURO-2020-1559-41310-56212-eng.pdf
-
-
-
-Additional WHO resource:
+WHO AirQ+ methodology:
 
 
 
@@ -169,13 +76,7 @@ https://www.who.int/europe/tools-and-toolkits/airq---software-tool-for-health-ri
 
 
 
-Main role in the project
-
-
-
-Used as mathematical and epidemiological foundation for health-risk estimation.
-
-
+This reference supports the health-risk interpretation and the discussion of exposure-response relationships.
 
 
 
@@ -183,7 +84,7 @@ Integration Strategy
 
 
 
-The datasets are not directly merged.
+The datasets are independent and are not directly merged row-by-row.
 
 
 
@@ -191,39 +92,27 @@ Instead:
 
 
 
-* Source 1 provides empirical environmental observations
-* Sources 2 and 3 provide epidemiological interpretation and health-risk estimation
-
-
-
-The project combines them through statistical modeling.
-
-
-
-Planned Modeling Workflow
-
-
-
-1. Model traffic intensity and pollution relationship
-2. Control for weather variables
-3. Introduce lag effects
-4. Estimate health risk from pollution exposure
-5. Analyze indirect pathway
-
-
+* UCI data is used for detailed pollution and meteorological analysis.
+* World Bank data is used for public-health context and mortality risk comparison.
+* WHO methodology is used to explain how air pollution exposure is linked to health outcomes.
+* 
 
 Key Assumptions
 
-* urban traffic contributes to local pollution
-* weather conditions influence pollution concentration
-* health risk can be estimated through epidemiological formulas
-* relationships are statistical rather than strictly causal
+
+
+* NO₂, NOx, and CO can be interpreted as traffic-related pollution indicators.
+* Meteorological conditions affect measured pollution concentration.
+* Country-level mortality indicators provide broader health context.
+* The project estimates statistical relationships and does not claim strict causality.
 
 
 
 Ethical and Legal Considerations
 
-* only publicly available datasets are used
-* no personal or sensitive data is processed
-* all sources will be cited appropriately
+
+
+* Only public datasets are used.
+* No personal or sensitive data is processed.
+* All external sources are documented and cited.
 

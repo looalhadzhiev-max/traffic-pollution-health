@@ -48,12 +48,23 @@ Data Sources
 
 
 
-The project is planned to use at least two independent data sources:
+The project uses two independent data sources:
 
 
 
-1. A traffic, weather, and air pollution dataset with daily observations.
-2. A health-risk or epidemiological reference dataset/source used to estimate health impact.
+1\. UCI Air Quality Dataset  
+
+&#x20;  Hourly urban air-quality and meteorological measurements.
+
+
+
+2\. World Bank Indicator SH.STA.AIRP.P5  
+
+&#x20;  Mortality rate attributed to household and ambient air pollution, age-standardized, per 100,000 population.
+
+
+
+A WHO AirQ+ resource is also used as a methodological reference for health-risk interpretation.
 
 
 
